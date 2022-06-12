@@ -22,15 +22,22 @@ export default function App() {
     return newDiceArr
   }
 
-  // 3
-  const diceElements = dice.map(die => (
-    <Die key={die.id} value={die.value} isHeld={die.isHeld} />
-    ))
-
   // 4
   function rollDice() {
     setDice(allNewDice())
   }
+
+  // 5
+  function holdDice(id) {
+    console.log(id)
+  }
+
+  // 3
+  const diceElements = dice.map(die => (
+    // 5
+    // <Die key={die.id} value={die.value} isHeld={die.isHeld} id={die.id} holdDice={die.id} />
+    <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
+    ))
 
   return (
     <main>
