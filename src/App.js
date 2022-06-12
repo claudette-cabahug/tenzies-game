@@ -27,9 +27,13 @@ export default function App() {
     setDice(allNewDice())
   }
 
-  // 5
+  // 5 & 6
   function holdDice(id) {
-    console.log(id)
+    setDice(oldDiceArr => oldDiceArr.map(die => {
+      return  die.id === id ? 
+        {...die, isHeld: !die.isHeld} :
+        die
+    }))
   }
 
   // 3
