@@ -14,10 +14,9 @@ export default function App() {
     const firstValue = dice[0].value
     const allSameValue = dice.every(die => die.value === firstValue)
     if (allHeld && allSameValue) {
-      setTenzies(true)
-      console.log("You won!")
+      setTenzies(true)  // game is won
     }
-  }, [dice])
+  }, [dice])  // updates state if this is changed
 
   // helper function
   function generateNewDie() {
@@ -38,11 +37,18 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice(oldDice => oldDice.map(die => {
-      return die.isHeld ?
-        die :
-        generateNewDie()
-    }))
+    // game is not won
+    if (!tenzies) {
+      setDice(oldDice => oldDice.map(die => {
+        return die.isHeld ?
+          die :
+          generateNewDie()
+      }))
+      // game is won
+    } else {
+        setTenzies(false)
+        setDice(allNewDice())
+    }
   }
 
   function holdDice(id) {
